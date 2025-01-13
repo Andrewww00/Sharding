@@ -28,10 +28,7 @@ def download_fragment():
                 file_content = file.read()
             return Response(
                 file_content,
-                mimetype='application/octet-stream',
-                headers={
-                    'Content-Disposition': f'attachment; filename={shard_name}'
-                }
+                mimetype='application/octet-stream'
             )
         except Exception as e:
             return f"Error reading shard: {e}", 500

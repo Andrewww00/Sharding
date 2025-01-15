@@ -86,8 +86,8 @@ class Database:
         if connessione.is_connected():
             try:
                 cursor = connessione.cursor()
-                query = f"SELECT * FROM documents WHERE UserID = '{userid}'"
-                cursor.execute(query)
+                query = "SELECT * FROM documents WHERE UserID = %s"
+                cursor.execute(query, (userid,))
                 risultati = cursor.fetchall()
                 return risultati
             except Exception as e:
@@ -132,12 +132,12 @@ class Database:
         if connessione.is_connected():
             try:
                 cursor = connessione.cursor()
-                query = f"""
+                query = """
                     SELECT DocumentID
                     FROM documents
-                    WHERE UserID = '{userid}' AND Filename = '{filename}'
+                    WHERE UserID = %s AND Filename = %s
                 """
-                cursor.execute(query)
+                cursor.execute(query, (userid, filename))
                 risultato = cursor.fetchone()
                 if risultato:
                     return risultato[0]

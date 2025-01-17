@@ -24,6 +24,7 @@ docker compose up -d
 ```
 * As last step, just run the main.py and follow the instruction on terminal:
 ```
+cd scripts
 python3 main.py
 ```
 

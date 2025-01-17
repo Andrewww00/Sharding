@@ -6,11 +6,14 @@ class Sharding:
     # Split the entire file into 3 shards
     def split(filename, num_container): 
         try:
-            if not os.path.exists("./input/" + filename):
-                print(f"Error: File '{filename}' not found in './input/' directory.")
+            input_dir = "./../input"
+            os.makedirs(input_dir, exist_ok=True)
+            full_path = os.path.join(input_dir, filename)
+            if not os.path.exists(full_path):
+                print(f"Error: File '{filename}' not found in {input_dir} directory.")
                 return None
 
-            with open("./input/" + filename, 'rb') as f:
+            with open(full_path, 'rb') as f:
                 content = f.read()
 
             total_size = len(content)
@@ -46,7 +49,7 @@ class Sharding:
                 print(">> Error: Empty fragment list!")
                 return
 
-            output_dir = "./output"
+            output_dir = "./../output"
             os.makedirs(output_dir, exist_ok=True)
 
             output_path = os.path.join(output_dir, output_filename)

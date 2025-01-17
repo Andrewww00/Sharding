@@ -30,8 +30,8 @@ while 1:
 
     elif choose == '2':
         filename = str(input("\nWrite the file name: "))
-        Database.insert_documents_from_folder("./input", filename, userid)
-        fragments = Sharding.split(filename,num_container)
+        Database.insert_documents_from_folder("./../input", filename, userid)
+        fragments = Sharding.split(filename, num_container)
         if fragments:
             document_id = Database.getDocumentID(userid, filename)
             if document_id:
@@ -43,7 +43,7 @@ while 1:
                 Database.uploadShardToContainers(crypted_list, document_id)  
                 print("\n>> File split and uploaded to containers successfully!")
             else:
-                print(f"\n>> Error: DocumentID not found for the file '{filename}'.")
+                print(f"\n>> Error: DaocumentID not found for the file '{filename}'.")
         else:
             print("\n>> Error: Could not split the file.")
 
@@ -85,7 +85,7 @@ while 1:
                 if decrypted_shards:
                     Sharding.recompose_from_container(document_id, decrypted_shards, "recomposed_" + filename)
                     print(">> File recomposed and decrypted successfully!")
-                    delete = str(input("Do you want to delete shards?[y/n]"))
+                    delete = input("Do you want to delete shards? [y/n] ").lower()
                     if delete == 'y': 
                         Database.deleteShardsFromServer(document_id)
                     else : 

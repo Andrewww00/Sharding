@@ -3,8 +3,8 @@ services:
     image: python:3.9-slim
     container_name: container1
     volumes:
-      - ./server.py:/app/server.py  # Monta server.py
-      - ./data/container1:/app/data
+      - ./scripts/server.py:/app/server.py  # Monta server.py
+      - ./containers/data/container1:/app/data
     ports:
       - "5001:5000"
     working_dir: /app
@@ -17,8 +17,8 @@ services:
     image: python:3.9-slim
     container_name: container2
     volumes:
-      - ./server.py:/app/server.py  # Monta server.py
-      - ./data/container2:/app/data
+      - ./scripts/server.py:/app/server.py  # Monta server.py
+      - ./containers/data/container2:/app/data
     ports:
       - "5002:5000"
     working_dir: /app
@@ -31,8 +31,8 @@ services:
     image: python:3.9-slim
     container_name: container3
     volumes:
-      - ./server.py:/app/server.py  # Monta server.py
-      - ./data/container3:/app/data
+      - ./scripts/server.py:/app/server.py  # Monta server.py
+      - ./containers/data/container3:/app/data
     ports:
       - "5003:5000"
     working_dir: /app
